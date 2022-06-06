@@ -37,6 +37,10 @@ dependencies:
   dots_indicator: ^2.1.0
   google_fonts: ^3.0.1
   syncfusion_flutter_gauges: ^20.1.58
+  get: ^4.6.5
+  firebase_auth: ^3.3.19
+  firebase_core: ^1.17.1
+  google_sign_in: ^5.3.2
 
 dev_dependencies:
   flutter_test:

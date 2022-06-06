@@ -9,97 +9,94 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: _appBar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.16,
-              width: MediaQuery.of(context).size.width * 0.86,
-              margin: const EdgeInsets.only(top: 15),
-              decoration: BoxDecoration(
-                color: Colors.lightBlueAccent.shade100,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: _weatherStack(),
-            ),
-            Container(
-                padding: const EdgeInsets.all(0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Center(
-                      child: Text(
-                        "..",
-                        style: TextStyle(fontSize: 50, color: Colors.blue),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                        left: 15,
-                      ),
-                      child: const Text(
-                        "Around The World",
-                        style: TextStyle(
-                          fontSize: 17,
-                          wordSpacing: 2,
-                          letterSpacing: 1,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.16,
-              width: MediaQuery.of(context).size.width * 0.86,
-              margin: const EdgeInsets.only(top: 15),
-              decoration: BoxDecoration(
-                color: Colors.lightBlueAccent.shade100,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: _weatherStack(),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.16,
-              width: MediaQuery.of(context).size.width * 0.86,
-              margin: const EdgeInsets.only(top: 15),
-              decoration: BoxDecoration(
-                color: Colors.lightBlueAccent.shade100,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: _weatherStack(),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.16,
-              width: MediaQuery.of(context).size.width * 0.86,
-              margin: const EdgeInsets.only(top: 15),
-              decoration: BoxDecoration(
-                color: Colors.lightBlueAccent.shade100,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: _weatherStack(),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.16,
-              width: MediaQuery.of(context).size.width * 0.86,
-              margin: const EdgeInsets.only(top: 15),
-              decoration: BoxDecoration(
-                color: Colors.lightBlueAccent.shade100,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: _weatherStack(),
-            ),
-          ],
+          child: Column(children: [
+        Container(
+          height: MediaQuery.of(context).size.height * 0.16,
+          width: MediaQuery.of(context).size.width * 0.86,
+          margin: const EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            color: Colors.lightBlueAccent.shade100,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: _weatherStack(),
         ),
-      ),
+        Container(
+            padding: const EdgeInsets.all(0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Center(
+                  child: Text(
+                    "..",
+                    style: TextStyle(fontSize: 50, color: Colors.blue),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: const Text(
+                    "Around The World",
+                    style: TextStyle(
+                      fontSize: 17,
+                      wordSpacing: 2,
+                      letterSpacing: 1,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            )),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.16,
+          width: MediaQuery.of(context).size.width * 0.86,
+          margin: const EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            color: Colors.lightBlueAccent.shade100,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: _weatherStack(),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.16,
+          width: MediaQuery.of(context).size.width * 0.86,
+          margin: const EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            color: Colors.lightBlueAccent.shade100,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: _weatherStack(),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.16,
+          width: MediaQuery.of(context).size.width * 0.86,
+          margin: const EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            color: Colors.lightBlueAccent.shade100,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: _weatherStack(),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.16,
+          width: MediaQuery.of(context).size.width * 0.86,
+          margin: const EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            color: Colors.lightBlueAccent.shade100,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: _weatherStack(),
+        ),
+      ])),
     );
   }
 
   _appBar() {
     return AppBar(
-      toolbarHeight: 120,
+      toolbarHeight: 140,
       elevation: 0,
       backgroundColor: Colors.white,
       title: Column(
@@ -108,7 +105,7 @@ class HomePage extends StatelessWidget {
           Text(
             "Hello Adrian ",
             style: TextStyle(
-              fontSize: 23,
+              fontSize: 20,
               color: Colors.black,
             ),
           ),
@@ -118,7 +115,7 @@ class HomePage extends StatelessWidget {
           Text(
             "Discover the weather",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               color: Colors.black,
             ),
           ),
@@ -153,10 +150,9 @@ class HomePage extends StatelessWidget {
   }
 
   _weatherStack() {
-    return Row(
-      children: [
-        Expanded(
-            child: Container(
+    return Row(children: [
+      Expanded(
+        child: Container(
           padding: const EdgeInsets.only(top: 12, left: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,28 +193,32 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-        )),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Icon(
-                  Icons.cloud_sharp,
-                  color: Colors.white,
-                  size: 80,
-                ),
-                Text("20°C",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
-              ],
-            ),
+        ),
+      ),
+
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: const [
+              Icon(
+                Icons.cloud_sharp,
+                color: Colors.white,
+                size: 80,
+              ),
+              Text("20°C",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            ],
           ),
         ),
-      ],
-    );
+      )
+      //)
+    ]);
+
+    // ),
   }
 }

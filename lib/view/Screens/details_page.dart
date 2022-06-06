@@ -1,5 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:myweatherapp/view/Screens/home_page.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -142,7 +144,7 @@ class DetailsPage extends StatelessWidget {
                 Icons.home,
                 color: Colors.black,
               ),
-              onPressed: () {}),
+              onPressed: () => Get.to(() => const HomePage())),
         ),
       ),
       actions: [

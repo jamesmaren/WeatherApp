@@ -1,5 +1,8 @@
 //import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:myweatherapp/view/Auth/signup_page.dart';
+import 'package:myweatherapp/view/Screens/home_page.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -12,7 +15,7 @@ class StartPage extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               alignment: Alignment.topCenter,
-              image: AssetImage('images/22533.png'),
+              image: AssetImage('images/sun.png'),
               //fit: BoxFit.cover,
               fit: BoxFit.contain,
             ),
@@ -72,7 +75,7 @@ class StartPage extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 45),
                       child: Center(
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () => Get.to(() => const HomePage()),
                           style: TextButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor: Colors.blue,
