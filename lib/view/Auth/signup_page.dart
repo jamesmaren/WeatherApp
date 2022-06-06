@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myweatherapp/Model/constant.dart';
 
 class signUp extends StatefulWidget {
   const signUp({Key? key}) : super(key: key);
@@ -10,7 +11,12 @@ class signUp extends StatefulWidget {
 class _signUpState extends State<signUp> {
   @override
   Widget build(BuildContext context) {
-    bool _isObscure = true;
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
+
+    final TextEditingController phoneController = TextEditingController();
+    bool isObscure = true;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -79,7 +85,7 @@ class _signUpState extends State<signUp> {
                         color: Colors.grey.withOpacity(0.4))
                   ]),
               child: TextField(
-                //controller: emailController,
+                controller: nameController,
                 decoration: InputDecoration(
                     hintText: "Name",
                     prefixIcon: const Icon(
@@ -116,7 +122,7 @@ class _signUpState extends State<signUp> {
                         color: Colors.grey.withOpacity(0.2))
                   ]),
               child: TextField(
-                //controller: emailController,
+                controller: emailController,
                 decoration: InputDecoration(
                     hintText: "Email",
                     prefixIcon: const Icon(
@@ -151,7 +157,7 @@ class _signUpState extends State<signUp> {
                         color: Colors.grey.withOpacity(0.2))
                   ]),
               child: TextField(
-                //controller: emailController,
+                controller: phoneController,
                 decoration: InputDecoration(
                     hintText: "Phone Number",
                     prefixIcon: const Icon(
@@ -186,8 +192,8 @@ class _signUpState extends State<signUp> {
                         color: Colors.grey.withOpacity(0.3))
                   ]),
               child: TextField(
-                //controller: emailController,
-                obscureText: _isObscure,
+                controller: passwordController,
+                obscureText: isObscure,
                 decoration: InputDecoration(
                     hintText: "Password",
                     prefixIcon: const Icon(
@@ -207,11 +213,11 @@ class _signUpState extends State<signUp> {
                     ),
                     suffixIcon: IconButton(
                         icon: Icon(
-                          _isObscure ? Icons.visibility : Icons.visibility_off,
+                          isObscure ? Icons.visibility : Icons.visibility_off,
                         ),
                         onPressed: () {
                           setState(() {
-                            _isObscure = !_isObscure;
+                            isObscure = !isObscure;
                           });
                         })),
               ),
@@ -232,8 +238,8 @@ class _signUpState extends State<signUp> {
                         color: Colors.grey.withOpacity(0.3))
                   ]),
               child: TextField(
-                //controller: emailController,
-                obscureText: _isObscure,
+                controller: passwordController,
+                obscureText: isObscure,
                 decoration: InputDecoration(
                     hintText: "Confirm Password",
                     prefixIcon: const Icon(
@@ -253,11 +259,11 @@ class _signUpState extends State<signUp> {
                     ),
                     suffixIcon: IconButton(
                         icon: Icon(
-                          _isObscure ? Icons.visibility : Icons.visibility_off,
+                          isObscure ? Icons.visibility : Icons.visibility_off,
                         ),
                         onPressed: () {
                           setState(() {
-                            _isObscure = !_isObscure;
+                            isObscure = !isObscure;
                           });
                         })),
               ),
@@ -266,7 +272,10 @@ class _signUpState extends State<signUp> {
               height: 13,
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  authController.register(emailController.text.trim(),
+                      passwordController.text.trim());
+                },
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.lightBlueAccent),

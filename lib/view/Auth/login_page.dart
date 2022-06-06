@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:myweatherapp/Model/constant.dart';
+import 'package:myweatherapp/view/Auth/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -8,6 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     bool _isObscure = true;
@@ -55,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.grey.withOpacity(0.2))
               ]),
           child: TextField(
-            //controller: emailController,
+            controller: _emailController,
             decoration: InputDecoration(
                 hintText: "Email",
                 prefixIcon: const Icon(
@@ -90,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.grey.withOpacity(0.2))
               ]),
           child: TextField(
-            //controller: emailController,
+            controller: _passwordController,
             obscureText: _isObscure,
             decoration: InputDecoration(
                 hintText: "Password",
@@ -143,7 +149,10 @@ class _LoginPageState extends State<LoginPage> {
           height: 25,
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () async {
+              authController.login(_emailController.text.trim(),
+                  _passwordController.text.trim());
+            },
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
@@ -178,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(() => const signUp()),
                   child: const Text(
                     "Sign up",
                     style: TextStyle(

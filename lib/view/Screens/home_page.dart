@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myweatherapp/Model/constant.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -138,7 +139,9 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 20.0),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              authController.signOut();
+            },
             child: CircleAvatar(
                 backgroundColor: Colors.grey.shade200,
                 child: const Icon(Icons.menu_rounded,

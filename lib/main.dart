@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myweatherapp/view/Auth/forgot_password.dart';
+import 'package:myweatherapp/Model/constant.dart';
+import 'package:myweatherapp/controller/authcontroller.dart';
 import 'package:myweatherapp/view/Auth/login_page.dart';
 import 'package:myweatherapp/view/Auth/signup_page.dart';
-import 'package:myweatherapp/view/Screens/details_page.dart';
-import 'package:myweatherapp/view/Screens/home_page.dart';
 import 'package:myweatherapp/view/Screens/start_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await firebaseInitialization.then((value) {
+    Get.put(AuthController());
+  });
   runApp(const MyApp());
 }
 
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const StartPage(),
+      home: const LoginPage(),
     );
   }
 }
