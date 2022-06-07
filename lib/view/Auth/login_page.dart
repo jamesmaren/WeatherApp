@@ -227,11 +227,16 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
-              children: const [
-                Image(
-                  image: AssetImage('images/gmail.png'),
-                  // height: 50,
-                  // width: 50,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    //  authController.signInWithGoogle();
+                  },
+                  child: const Image(
+                    image: AssetImage('images/gmail.png'),
+                    // height: 50,
+                    // width: 50,
+                  ),
                 ),
               ],
             ),

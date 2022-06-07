@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:myweatherapp/Model/constant.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:myweatherapp/view/Auth/login_page.dart';
 
 class signUp extends StatefulWidget {
   const signUp({Key? key}) : super(key: key);
@@ -14,7 +17,6 @@ class _signUpState extends State<signUp> {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final TextEditingController nameController = TextEditingController();
-
     final TextEditingController phoneController = TextEditingController();
     bool isObscure = true;
     return Scaffold(
@@ -53,15 +55,17 @@ class _signUpState extends State<signUp> {
               children: [
                 CircleAvatar(
                   radius: 64,
-                  // backgroundImage: NetworkImage(
-                  //     "https://avatars.githubusercontent.com/u/46225838?v=4"),
+                  backgroundImage: NetworkImage(
+                      "https://avatars.githubusercontent.com/u/46225838?v=4"),
                   backgroundColor: Colors.grey.shade300,
                 ),
                 Positioned(
                   left: 80,
                   bottom: -10,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      authController.pickImage();
+                    },
                     icon: const Icon(Icons.add_a_photo),
                   ),
                 )
@@ -225,56 +229,61 @@ class _signUpState extends State<signUp> {
             const SizedBox(
               height: 10,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.89,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 10,
-                        spreadRadius: 7,
-                        offset: const Offset(1, 1),
-                        color: Colors.grey.withOpacity(0.3))
-                  ]),
-              child: TextField(
-                controller: passwordController,
-                obscureText: isObscure,
-                decoration: InputDecoration(
-                    hintText: "Confirm Password",
-                    prefixIcon: const Icon(
-                      Icons.password,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide:
-                            const BorderSide(color: Colors.white, width: 1.0)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide:
-                            const BorderSide(color: Colors.white, width: 1.0)),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    suffixIcon: IconButton(
-                        icon: Icon(
-                          isObscure ? Icons.visibility : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isObscure = !isObscure;
-                          });
-                        })),
-              ),
-            ),
+            // Container(
+            //   width: MediaQuery.of(context).size.width * 0.89,
+            //   decoration: BoxDecoration(
+            //       color: Colors.white,
+            //       borderRadius: BorderRadius.circular(30),
+            //       boxShadow: [
+            //         BoxShadow(
+            //             blurRadius: 10,
+            //             spreadRadius: 7,
+            //             offset: const Offset(1, 1),
+            //             color: Colors.grey.withOpacity(0.3))
+            //       ]),
+            //   child: TextField(
+            //     controller: passwordController,
+            //     obscureText: isObscure,
+            //     decoration: InputDecoration(
+            //         hintText: "Confirm Password",
+            //         prefixIcon: const Icon(
+            //           Icons.password,
+            //           color: Colors.lightBlueAccent,
+            //         ),
+            //         focusedBorder: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(30),
+            //             borderSide:
+            //                 const BorderSide(color: Colors.white, width: 1.0)),
+            //         enabledBorder: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(30),
+            //             borderSide:
+            //                 const BorderSide(color: Colors.white, width: 1.0)),
+            //         border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(30),
+            //         ),
+            //         suffixIcon: IconButton(
+            //             icon: Icon(
+            //               isObscure ? Icons.visibility : Icons.visibility_off,
+            //             ),
+            //             onPressed: () {
+            //               setState(() {
+            //                 isObscure = !isObscure;
+            //               });
+            //             })),
+            //   ),
+            // ),
             const SizedBox(
               height: 13,
             ),
             TextButton(
                 onPressed: () async {
-                  authController.register(emailController.text.trim(),
-                      passwordController.text.trim());
+                  authController.register(
+                      emailController.text,
+                      // emailController.toString,
+                      passwordController.text,
+                      nameController.text,
+                      phoneController.text,
+                      authController.profilePhoto);
                 },
                 style: ButtonStyle(
                   backgroundColor:
@@ -310,7 +319,7 @@ class _signUpState extends State<signUp> {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.to(() => LoginPage()),
                       child: const Text(
                         "Login here",
                         style: TextStyle(
