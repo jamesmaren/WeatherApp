@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myweatherapp/Model/constant.dart';
+import 'package:myweatherapp/view/Auth/forgot_password.dart';
 import 'package:myweatherapp/view/Auth/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -132,14 +133,19 @@ class _LoginPageState extends State<LoginPage> {
         Row(
           //crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.only(right: 18.0, top: 3),
-              child: Text(
-                "Forgot Password?",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.grey,
+              padding: const EdgeInsets.only(right: 18.0, top: 3),
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(() => const forgotPassword());
+                },
+                child: const Text(
+                  "Forgot Password?",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
@@ -230,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    //  authController.signInWithGoogle();
+                    authController.signInWithGoogle();
                   },
                   child: const Image(
                     image: AssetImage('images/gmail.png'),

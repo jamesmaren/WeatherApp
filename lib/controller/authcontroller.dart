@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:myweatherapp/Model/auth_exception.dart';
 import 'package:myweatherapp/Model/user.dart' as model;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
@@ -111,8 +112,7 @@ class AuthController extends GetxController {
   //         password.isNotEmpty &&
   //         image != null) {
   //       // save user to out auth and firebase firestore
-  //       //UserCredential cred =
-  //       await auth.createUserWithEmailAndPassword(
+  //       UserCredential cred = await auth.createUserWithEmailAndPassword(
   //           email: email, password: password);
   //       String downloadUrl = await _uploadToStorage(image);
   //       model.User user = model.User(
@@ -123,9 +123,10 @@ class AuthController extends GetxController {
   //         phone: phone,
   //       );
 
-  //       await firebaseFirestore.collection('users');
-  //       //.doc(cred.user!.uid)
-  //       //.set(user.toJson());
+  //       await firebaseFirestore
+  //           .collection('users')
+  //           .doc(cred.user!.uid)
+  //           .set(user.toJson());
   //     } else {
   //       Get.snackbar(
   //         "Error creating Account",
@@ -140,20 +141,28 @@ class AuthController extends GetxController {
   //   }
   // }
 
-  Future<void> register(
-      phone, String email, String password, String name, File? image) async {
+  // Future<void> register(
+  //     phone, String email, String password, String name, File? image) async {
+  //   try {
+  //     await auth.createUserWithEmailAndPassword(
+  //         email: email, password: password);
+  //     String downloadUrl = await _uploadToStorage(image!);
+  //     model.User user = model.User(
+  //       email: email,
+  //       name: name,
+  //       profilePhoto: downloadUrl,
+  //       phone: phone,
+  //     );
+
+  //     await firebaseFirestore.collection('users');
+  //   } catch (firebaseAuthException) {}
+  // }
+
+  void register(String email, String password, String phone, String name,
+      File? image) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      String downloadUrl = await _uploadToStorage(image!);
-      model.User user = model.User(
-        email: email,
-        name: name,
-        profilePhoto: downloadUrl,
-        phone: phone,
-      );
-
-      await firebaseFirestore.collection('users');
     } catch (firebaseAuthException) {}
   }
 
@@ -166,6 +175,10 @@ class AuthController extends GetxController {
   void signOut() async {
     await auth.signOut();
   }
+}
+
+void resetPassword({required String email}) async {
+  await auth.sendPasswordResetEmail(email: email);
 }
 
 
