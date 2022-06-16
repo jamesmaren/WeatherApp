@@ -158,8 +158,12 @@ class AuthController extends GetxController {
   //   } catch (firebaseAuthException) {}
   // }
 
-  void register(String email, String password, String phone, String name,
-      File? image) async {
+  void register(
+    String email,
+    String password,
+    String phone,
+    String name,
+  ) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -175,10 +179,10 @@ class AuthController extends GetxController {
   void signOut() async {
     await auth.signOut();
   }
-}
 
-void resetPassword({required String email}) async {
-  await auth.sendPasswordResetEmail(email: email);
+  void resetPassword({required String email}) async {
+    await auth.sendPasswordResetEmail(email: email);
+  }
 }
 
 

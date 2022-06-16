@@ -278,12 +278,13 @@ class _signUpState extends State<signUp> {
             TextButton(
                 onPressed: () async {
                   authController.register(
-                      emailController.text,
-                      // emailController.toString,
-                      passwordController.text,
-                      nameController.text,
-                      phoneController.text,
-                      authController.profilePhoto);
+                    emailController.text,
+                    // emailController.toString,
+                    passwordController.text,
+                    nameController.text,
+                    phoneController.text,
+                    //authController.profilePhoto
+                  );
                 },
                 style: ButtonStyle(
                   backgroundColor:

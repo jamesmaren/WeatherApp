@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:myweatherapp/Model/constant.dart';
+import 'package:myweatherapp/view/Auth/login_page.dart';
 
 class forgotPassword extends StatelessWidget {
-  const forgotPassword({Key? key}) : super(key: key);
+  final TextEditingController _emailController = TextEditingController();
+
+  forgotPassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +56,7 @@ class forgotPassword extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.2))
                 ]),
             child: TextField(
-              //controller: emailController,
+              controller: _emailController,
               decoration: InputDecoration(
                   hintText: "Email",
                   prefixIcon: const Icon(
@@ -74,7 +79,12 @@ class forgotPassword extends StatelessWidget {
             height: 20,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                authController.resetPassword(
+                  email: _emailController.text.trim(),
+                );
+                Navigator.of(context).pop();
+              },
               style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
@@ -101,7 +111,7 @@ class forgotPassword extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(() => const LoginPage()),
                   child: const Text(
                     "Back to login",
                     style: TextStyle(
