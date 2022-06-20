@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myweatherapp/Model/constant.dart';
+import 'package:myweatherapp/Model/weather_model.dart';
+import 'package:myweatherapp/Model/weather_model.dart';
 import 'package:myweatherapp/controller/weather_service.dart';
 import 'package:myweatherapp/view/Screens/details_page.dart';
 import 'package:http/http.dart' as http;
@@ -17,45 +19,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Now let's test if everything work
-// we will call the api in the init state function
-  // WeatherApiClient client = WeatherApiClient();
-  // @override
-  // void initState() {
-  //   // TODO:implement initState
-  //   super.initState();
-  //   client.getCurrentWeather("georgia");
-  // }
-
-  var temp;
-  var description;
-  var humidity;
-  var country;
-  var main;
-
-  Future getWeather() async {
-    http.Response response = await http.get(Uri.parse(
-        //"https://api.openweathermap.org/data/2.5/weather?lat=32.1656&lon=82.9001&appid=18fe3dd5cf52301dfe7d4f7086baaa26&units=metric"
-        "https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&appid=18fe3dd5cf52301dfe7d4f7086baaa26&units=metric"));
-    var results = jsonDecode(response.body);
-    setState(() {
-      this.temp = results['main']['temp'];
-      this.description = results['weather'][0]['description'];
-      this.humidity = results['main']['humidity'];
-      this.country = results['sys']['country'];
-      this.main = results['weather'][0]['main'];
-    });
-  }
+  Weather? weathers;
+  var isLoaded = false;
 
   @override
   void initState() {
     super.initState();
-    this.getWeather();
+    getData();
+  }
+
+  getData() async {
+    weathers = await RemoteService2().getWeather()
+
+        // as List<Weather>?
+
+        ;
+
+    if (weathers != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
   }
 
   var _popupMenuItemIndex = 0;
   Color _changeColorAccordingToMenuItem = Colors.red;
   var appBarHeight = AppBar().preferredSize.height;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -237,9 +227,12 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                humidity != null ? humidity.toString() + "%" : " Loading...",
-                style: const TextStyle(
+              const Text(
+                //  weathers != null ? weathers!.wind!.speed.toString() : "fun",
+
+                " Current Location",
+
+                style: TextStyle(
                   wordSpacing: 3,
                   letterSpacing: 0.6,
                   fontSize: 18,
@@ -250,7 +243,9 @@ class _HomePageState extends State<HomePage> {
                 height: 15,
               ),
               Text(
-                country != null ? country.toString() : "Loading...",
+                weathers != null ? weathers!.sys!.country.toString() : "fun",
+
+                //  "Loading...",
                 style: const TextStyle(
                     fontSize: 25,
                     letterSpacing: 1,
@@ -260,9 +255,9 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                main != null ? main.toString() : "loading...",
-                style: const TextStyle(
+              const Text(
+                "Clouds",
+                style: TextStyle(
                   fontSize: 17,
                   letterSpacing: 1,
                   color: Colors.white,
@@ -287,7 +282,12 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
                 size: 80,
               ),
-              Text(temp != null ? temp.toString() : "loading...",
+              Text(
+                  weathers != null
+                      ? weathers!.main!.temp.toString() + " \u2109"
+                      : "fun",
+
+                  //"loading...",
                   style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
